@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Section, LayoutDiv, SectionTitle } from 'components/StyledComponents';
 import styled from 'styled-components';
-import useSearchStore from 'store/store';
+import useLogStore from 'store/store';
 
 const SearchForm = styled.form`
   display: flex;
@@ -47,7 +47,7 @@ const SearchResult = styled.div`
 `
 
 const SearchSection = ({ searchResultCount }: { searchResultCount: number }) => {
-  const { searchQuery, setSearchQuery, setShowMoreCount, setScrollTop } = useSearchStore();
+  const { searchQuery, setSearchQuery, setShowMoreCount, setScrollTop } = useLogStore();
   const [inputText, setInputText] = useState<string>(searchQuery || '');
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -73,7 +73,7 @@ const SearchSection = ({ searchResultCount }: { searchResultCount: number }) => 
   }
 
   return (
-    <StickySection $bgColor="#f4fffe">
+    <StickySection>
       <LayoutDiv $maxWidth="800px">
         <SectionTitle>상품 검색</SectionTitle>
         <SearchForm onSubmit={handleSubmit}>

@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+# 배컴 랠리즈 프론트엔드 개발 사전 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 개요
 
-## Available Scripts
+### 설명
+상품 목록 페에지, 상품 상세 페이지로 구성된 개발자 구현 과제 프로젝트입니다. 패키지 매니저는 npm을 채택하였습니다.
 
-In the project directory, you can run:
+### 디렉토리 구조
+ 📦src <br/>
+ ┣ 📂components <br/>
+ ┃ ┣ 📂home <br/>
+ ┃ ┃ ┣ 📜ProductCard.tsx <br/>
+ ┃ ┃ ┣ 📜ProductListSection.tsx <br/>
+ ┃ ┃ ┗ 📜SearchSection.tsx <br/>
+ ┃ ┣ 📂product-detail <br/>
+ ┃ ┃ ┣ 📜ProductImageSection.tsx <br/>
+ ┃ ┃ ┗ 📜PurchaseInfoSection.tsx <br/>
+ ┃ ┣ 📜StyledComponents.tsx <br/>
+ ┃ ┗ 📜TopButton.tsx <br/>
+ ┣ 📂hooks <br/>
+ ┃ ┣ 📜useFetchProduct.tsx <br/>
+ ┃ ┗ 📜useFetchProducts.ts <br/>
+ ┣ 📂pages <br/>
+ ┃ ┣ 📜Home.tsx <br/>
+ ┃ ┗ 📜ProductDetail.tsx <br/>
+ ┣ 📂store <br/>
+ ┃ ┗ 📜store.ts <br/>
+ ┣ 📂types <br/>
+ ┃ ┗ 📜index.ts <br/>
+ ┣ 📜App.test.tsx <br/>
+ ┣ 📜App.tsx <br/>
+ ┣ 📜index.css <br/>
+ ┣ 📜index.tsx <br/>
+ ┣ 📜logo.svg <br/>
+ ┣ 📜react-app-env.d.ts <br/>
+ ┣ 📜reportWebVitals.ts <br/>
+ ┗ 📜setupTests.ts <br/>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - components : page를 제외한 컴포넌트 파일을 관리. components 폴더 내에서 페이지 별로 구분을 지어 각 페이지에서만 쓰는 컴포넌트로 분류. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - hooks : 커스텀 훅을 관리하는 폴더 
 
-### `npm test`
+ - pages : 브라우저 라우팅의 단위가 되는 페이지 컴포넌트 파일을 관리
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ - store : 전역 상태를 관리
 
-### `npm run build`
+ - types : 정적 데이터 타입 관리
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ ### 개발 스택
+ 
+ - React
+ - TypeScript 
+ - styled-components
+ - zustand
+ - react-router-dom
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+ ### 이용 API 
+ https://dummyjson.com/docs/products
+ 
+ ## 구현 목록
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ ### 1. 상품 목록 페이지 ( URI : '/' )
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 1-1. 상품 목록 출력
+  - 처음 접속 시 전체 상품 중 10개만 출력
+  - 더 표시할 상품 있을 경우 더보기 버튼을 눌러 10개씩 추가로 출력
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### 1-2. 검색
+  - 검색어 입력 후 검색 버튼 클릭 or enter키 누를 시, 검색 결과 반영하여 출력
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### 2. 상품 디테일 페이지 ( URI : '/detail/:id' )
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 2-1. 상품 상세 정보 출력
+- useParams를 통해 id를 받아와 상품 1개의 데이터를 fetch
+- 상품 상세 정보, 이미지 출력
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 2-2. 목록으로 돌아가기
+ - 페이지 상단 '목록으로 돌아가기'를 클릭한 경우, 상품 목록 페이지로 이동
+ - 상품 목록 페이지로 돌아갈 떄, 이전의 검색 결과, 스크롤 위치를 기억함
+ - zustand를 통해 유저의 이전 검색 결과, 스크롤 위치, 더 보기 버튼 누른 횟수를 관리하여 구현 
+
+
+ ### 3. 기타 
+  #### 3-1. 브라우저 라우팅 
+  - react-router-dom을 이용하여 각 path와 그에 맞는 page Component를 지정함
+
+  #### 3-2. Top 버튼
+  - 스크롤이 viewport Height의 1.5배정도 내려간 경우, 페이지 우측 하단에 Top 버튼을 표시
+  - Top 버튼 클릭 시 스크롤 위치가 페이지 최상단으로 이동

@@ -1,5 +1,5 @@
 import useFetchProducts from '../hooks/useFetchProducts';
-import useSearchStore from 'store/store';
+import useLogStore from 'store/store';
 import SearchSection from '../components/home/SearchSection';
 import ProductListSection from '../components/home/ProductListSection';
 import { Product } from '../types/index';
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { MarginY } from './../components/StyledComponents';
 
 const Home = () => {
-  const { searchQuery, showMoreCount, scrollTop } = useSearchStore();
+  const { searchQuery, showMoreCount, scrollTop } = useLogStore();
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([] as Product[]);
   const products = useFetchProducts(searchQuery); // searchQuery를 의존성 배열로 받고 있기 때문에 검색 시 produts를 새로 가져옴
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Section, LayoutDiv, CommonButton } from 'components/StyledComponents';
 import ProductCard from './ProductCard';
-import useSearchStore from 'store/store';
+import useLogStore from 'store/store';
 import { Product } from '../../types/index';
 
 const ProductListContainer = styled.div`
@@ -25,13 +25,13 @@ const ShowMoreButton = styled(CommonButton)`
 `;
 
 interface ProductListSectionProps {
-  displayedProducts : Product[];
-  isAllDisplayed : boolean;
+  displayedProducts: Product[];
+  isAllDisplayed: boolean;
 }
 
-const ProductListSection : React.FC<ProductListSectionProps> = ({ displayedProducts, isAllDisplayed}) => {
+const ProductListSection: React.FC<ProductListSectionProps> = ({ displayedProducts, isAllDisplayed }) => {
 
-  const { showMoreCount, setShowMoreCount, setScrollTop } = useSearchStore();
+  const { showMoreCount, setShowMoreCount, setScrollTop } = useLogStore();
 
   const handleClickMoreBtn = () => {
     setShowMoreCount(showMoreCount + 1);
@@ -43,9 +43,9 @@ const ProductListSection : React.FC<ProductListSectionProps> = ({ displayedProdu
       <LayoutDiv $maxWidth="800px">
         {displayedProducts.length ? (
           <ProductListContainer>
-          {displayedProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+            {displayedProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </ProductListContainer>
         ) : <EmptyListContainer>검색 결과에 해당하는 상품이 존재하지 않습니다.</EmptyListContainer>}
 

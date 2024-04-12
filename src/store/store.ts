@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface Store {
+interface LogStore {
   searchQuery : string;
   showMoreCount : number;
   scrollTop : number;
@@ -9,7 +9,7 @@ interface Store {
   setScrollTop : (pixel : number) => void;
 }
 
-const useSearchStore = create<Store>((set, get) => ({
+const useLogStore = create<LogStore>((set, get) => ({
   searchQuery : '',
   showMoreCount : 0,
   scrollTop : 0,
@@ -18,4 +18,4 @@ const useSearchStore = create<Store>((set, get) => ({
   setScrollTop : (pixel  : number) => set((state) => ({scrollTop : pixel}))
 }))
 
-export default useSearchStore;
+export default useLogStore;

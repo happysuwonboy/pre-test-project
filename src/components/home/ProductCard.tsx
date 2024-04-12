@@ -1,6 +1,6 @@
 import { ImageContainer } from 'components/StyledComponents';
 import { useNavigate } from 'react-router-dom';
-import useSearchStore from 'store/store';
+import useLogStore from 'store/store';
 import styled from 'styled-components';
 import { Product } from 'types';
 
@@ -81,7 +81,7 @@ const PriceContainer = styled.div<PriceContainerProps>`
 
 const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useNavigate();
-  const { setScrollTop } = useSearchStore();
+  const { setScrollTop } = useLogStore();
 
   const handleClickProduct = () => {
     setScrollTop(window.scrollY)
