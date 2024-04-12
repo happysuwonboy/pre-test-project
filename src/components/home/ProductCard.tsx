@@ -1,17 +1,11 @@
+import { ImageContainer } from 'components/StyledComponents';
 import { useNavigate } from 'react-router-dom';
 import useSearchStore from 'store/store';
 import styled from 'styled-components';
 import { Product } from 'types';
 
-
-const ThumbnailContainer = styled.div`
-  height: 20vh;
-    & > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position : center;
-    }
+const ThumbnailContainer = styled(ImageContainer)`
+  height: 25vh;
 `
 
 const HeaderContainer = styled.h3`

@@ -9,6 +9,7 @@ export interface Product {
   stock : number;
   thumbnail: string;
   title: string;
+  description : string;
 }
 
 

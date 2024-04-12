@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Section, LayoutDiv } from 'components/StyledComponents';
+import { Section, LayoutDiv, CommonButton } from 'components/StyledComponents';
 import ProductCard from './ProductCard';
 import useSearchStore from 'store/store';
 import { Product } from '../../types/index';
@@ -20,17 +20,8 @@ const EmptyListContainer = styled.div`
   color: #888;
 `
 
-const ShowMoreButton = styled.button`
-  width: 100%;
+const ShowMoreButton = styled(CommonButton)`
   margin: 3rem 0;
-  padding: 1rem;
-  background: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  &:hover {
-    background: #000;
-    color: #fff;
-  }
 `;
 
 interface ProductListSectionProps {
