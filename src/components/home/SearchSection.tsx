@@ -46,7 +46,7 @@ const SearchResult = styled.div`
     }
 `
 
-const SearchSection = ({searchResultCount} : {searchResultCount : number}) => {
+const SearchSection = ({ searchResultCount }: { searchResultCount: number }) => {
   const { searchQuery, setSearchQuery, setShowMoreCount, setScrollTop } = useSearchStore();
   const [inputText, setInputText] = useState<string>(searchQuery || '');
 
@@ -69,6 +69,7 @@ const SearchSection = ({searchResultCount} : {searchResultCount : number}) => {
   const handleClickResetBtn = () => {
     setScrollTop(0);
     setSearchQuery('');
+    setInputText('');
   }
 
   return (
@@ -84,17 +85,17 @@ const SearchSection = ({searchResultCount} : {searchResultCount : number}) => {
           />
           <button type="submit">검색</button>
         </SearchForm>
-        {searchQuery 
-        ? 
-        <SearchResult>
+        {searchQuery
+          ?
+          <SearchResult>
             <span>
-                {searchResultCount 
+              {searchResultCount
                 ? <><b>"{searchQuery}"</b> 에 대한 총 <b>{searchResultCount}</b> 건의 검색 결과가 있습니다.</>
                 : <><b>"{searchQuery}"</b> 에 대한 검색결과가 존재하지 않습니다.</>}
             </span>
             <button onClick={handleClickResetBtn}> 초기화</button>
-        </SearchResult> 
-        : null}
+          </SearchResult>
+          : null}
       </LayoutDiv>
     </StickySection>
   );
