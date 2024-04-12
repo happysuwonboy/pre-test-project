@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Product } from 'types';
 
 const useFetchProducts = (searchQuery : string = '') => {

@@ -1,12 +1,12 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Home from 'pages/Home';
 import ProductDetail from 'pages/ProductDetail';
+import TopButton from './components/TopButton';
 
 
-// 
-const NormalizeStyle = createGlobalStyle`
+// reset CSS
+const ResetStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -28,19 +28,16 @@ const NormalizeStyle = createGlobalStyle`
     	vertical-align: baseline;
     }
 `
-const GlobalStyle = createGlobalStyle`
-
-`
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <NormalizeStyle />
-      <GlobalStyle />
+      <ResetStyle />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/detail/:id' element={<ProductDetail />} />
-        <Route path='*' element={<div>404 Not Found</div>} />
+        {/* <Route path='*' element={<div>404 Not Found</div>} /> */}
       </Routes>
+      <TopButton />
     </BrowserRouter>
   );
 }

@@ -79,8 +79,6 @@ const PriceContainer = styled.div<PriceContainerProps>`
 `
 
 
-
-
 const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useNavigate();
   const { setScrollTop } = useSearchStore();
@@ -114,10 +112,10 @@ const ProductCard = ({ product }: { product: Product }) => {
       {/* 가격 (원가, 할인가, 할인율) */}
       <PriceContainer $isDiscounted={product?.discountPercentage !== 0}>
         <div>
-          <b>${product?.price}</b>
+          <b>${product?.price.toLocaleString()}</b>
           <span>{Math.round(product?.discountPercentage)}%</span>
         </div>
-        <b>${(product?.price * (100 - product?.discountPercentage) / 100).toFixed(2).toLocaleString()}</b>
+        <b>${Math.round(product?.price * (100 - product?.discountPercentage) / 100).toLocaleString()}</b>
       </PriceContainer>
 
     </CardContainer>

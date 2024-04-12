@@ -14,8 +14,12 @@ interface SectionTitleProps {
   $bottomLine?: boolean;
 }
 
-interface VerticalMarginProps {
+interface MarginYProps {
   $mg?: string;
+}
+
+interface ImageContainerProps {
+  $border?: boolean;
 }
 
 export const Section = styled.section<SectionProps>`
@@ -49,11 +53,14 @@ export const CommonButton = styled.button`
   }
 `;
 
-export const VerticalMargin = styled.div<VerticalMarginProps>`
+export const MarginY = styled.div<MarginYProps>`
   margin: ${(props) => (props.$mg ? props.$mg + ' 0' : '1rem 0')};
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<ImageContainerProps>`
+  overflow: hidden;
+  border-radius : 10px;
+  border: ${(props) => props.$border ? '1px solid #CCC' : 'none'};
   & > img {
     width: 100%;
     height: 100%;

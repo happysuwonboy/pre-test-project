@@ -1,14 +1,14 @@
 import {
   LayoutDiv,
-  Section,
   CommonButton,
-  SectionTitle,
 } from 'components/StyledComponents';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useFetchProduct from '../hooks/useFetchProduct';
-import { VerticalMargin, ImageContainer } from '../components/StyledComponents';
+import { MarginY } from '../components/StyledComponents';
+import PurchaseInfoSection from './../components/product-detail/PurchaseInfoSection';
+import ProductImageSection from 'components/product-detail/ProductImageSection';
 
 const BackButton = styled(CommonButton)`
   width: auto;
@@ -24,24 +24,6 @@ const BackButton = styled(CommonButton)`
   }
 `;
 
-const PurchaseContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    & > div {
-      width: 46%;
-    }
-`
-const ThumbmailContainer = styled(ImageContainer)`
-    min-height: 300px;
-    max-height: 500px;
-`
-
-const PurchaseInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -49,39 +31,20 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div>
-      <Section>
-        <LayoutDiv $maxWidth="1000px">
-          <BackButton onClick={() => navigate('/')}>
-            <span>&lt;</span>목록으로 돌아가기
-          </BackButton>
-        </LayoutDiv>
-      </Section>
+      <LayoutDiv $maxWidth="1000px">
+        <BackButton onClick={() => navigate('/')}>
+          <span>&lt;</span>목록으로 돌아가기
+        </BackButton>
+      </LayoutDiv>
 
-      <Section>
-        <LayoutDiv $maxWidth="1000px">
-          <SectionTitle $bottomLine>상품 구매</SectionTitle>
-          <PurchaseContainer>
-            <ThumbmailContainer>
-              <img src={product?.thumbnail} alt="s" />
-            </ThumbmailContainer>
-            <PurchaseInfoContainer>
-              <h3>{product?.title}</h3>
-              <span>{product?.brand}</span>
-              <span>{product?.description}</span>
-              <span>${product?.price}</span>
-            </PurchaseInfoContainer>
-          </PurchaseContainer>
-        </LayoutDiv>
-      </Section>
+      {/* 상품 구매 정보 섹션 */}
+      <PurchaseInfoSection product={product} />
 
-      <VerticalMargin $mg='2rem' />
+      <MarginY $mg='2rem' />
 
-      <Section>
-        <LayoutDiv $maxWidth="1000px">
-          <SectionTitle $bottomLine>상품 사진</SectionTitle>
-          
-        </LayoutDiv>
-      </Section>
+      {/* 상품 사진 섹션 */}
+      <ProductImageSection imagesArray={product?.images} />
+
     </div>
   );
 };
