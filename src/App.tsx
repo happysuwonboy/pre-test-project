@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import Home from 'page/Home';
-import ProductDetail from 'page/ProductDetail';
+import Home from 'pages/Home';
+import ProductDetail from 'pages/ProductDetail';
 
 
 // 
@@ -36,7 +36,6 @@ const App: React.FC = () => {
     <BrowserRouter>
       <NormalizeStyle />
       <GlobalStyle />
-
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/detail/:id' element={<ProductDetail />} />

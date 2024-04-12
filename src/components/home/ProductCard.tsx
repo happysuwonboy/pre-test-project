@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Product } from 'types';
 
 
-
-
 const ThumbnailContainer = styled.div`
   height: 20vh;
     & > img {
